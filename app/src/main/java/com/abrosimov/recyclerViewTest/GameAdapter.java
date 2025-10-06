@@ -25,7 +25,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
             textItem = itemView.findViewById(R.id.gameText);
             gameIcon = itemView.findViewById(R.id.gameIcon); //оп
         }
-     }
+    }
 
     @NonNull
     @Override
@@ -39,6 +39,16 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textItem.setText(games.get(position));
+
+        // Ставлю иконки
+        if (games.get(position) == "Minecraft") {
+            holder.gameIcon.setImageResource(R.drawable.minecraft_icon);
+        }
+        if (games.get(position) == "Valorant") {
+            holder.gameIcon.setImageResource(R.drawable.valorant_icon);
+        }
+
+
 
         // Обработка клика
         holder.itemView.setOnClickListener(v -> {
