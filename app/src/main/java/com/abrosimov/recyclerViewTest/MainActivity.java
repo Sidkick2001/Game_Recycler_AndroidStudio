@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,10 +21,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<String> games = Arrays.asList("Minecraft", "Valorant", "GTA V", "Skyrim", "Hollow Knight", "Counter-Strike 2",
-                "PUBG: BATTLEGROUNDS", "Dota 2", "Naraka: Bladepoint", "Marvel Rivals", "Apex Legends", "Rust",
-                "Tom Clancy's Rainbow Six Siege", "Delta Force", "War Thunder", "Baldur's Gate 3", "Warframe", "EA SPORTS FC 25",
-                "Call of Duty", "Elden Ring", "Don't Starve Together", "DayZ", "Football Manager 2024", "Destiny 2", "Team Fortress 2");
+        Game minecraft = new Game("Minecraft", R.drawable.minecraft_icon);
+        Game valorant = new Game("Valorant", R.drawable.valorant_icon);
+        List<Game> games = new ArrayList<>();
+        games.add(minecraft);
+        games.add(valorant);
+
 
         RecyclerView recyclerView = findViewById(R.id.myRecyclerGames);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

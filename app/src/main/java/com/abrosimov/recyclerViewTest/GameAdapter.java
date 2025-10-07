@@ -5,15 +5,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> {
-    private final List<String> games;
-    GameAdapter(List<String> games) {
+    private final List<Game> games;
+    GameAdapter(List<Game> games) {
         this.games = games;
     }
 
@@ -38,22 +37,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textItem.setText(games.get(position));
+        holder.textItem.setText(games.get(position).getName());
+        holder.gameIcon.setImageResource(games.get(position).getIdIcon());
 
-        // Ставлю иконки
-        if (games.get(position) == "Minecraft") {
-            holder.gameIcon.setImageResource(R.drawable.minecraft_icon);
-        }
-        if (games.get(position) == "Valorant") {
-            holder.gameIcon.setImageResource(R.drawable.valorant_icon);
-        }
-
-
-
-        // Обработка клика
+        /*// Обработка клика
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), games.get(position), Toast.LENGTH_SHORT).show();
-        });
+        });*/
     }
 
     @Override
