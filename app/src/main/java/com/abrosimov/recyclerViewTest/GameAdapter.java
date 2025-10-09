@@ -17,11 +17,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
 
      static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textItem;
-        ImageView gameIcon; //опа
+        /*ImageView gameIcon;*/ //опа
         MyViewHolder(View itemView) {
             super(itemView);
             textItem = itemView.findViewById(R.id.gameText);
-            gameIcon = itemView.findViewById(R.id.gameIcon); //оп
+            /*gameIcon = itemView.findViewById(R.id.gameIcon);*/ //оп
         }
     }
 
@@ -37,7 +37,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textItem.setText(games.get(position).getName());
-        holder.gameIcon.setImageResource(games.get(position).getIdIcon());
+        /*holder.gameIcon.setImageResource(games.get(position).getIdIcon());*/
 
         /*// Обработка клика
         holder.itemView.setOnClickListener(v -> {

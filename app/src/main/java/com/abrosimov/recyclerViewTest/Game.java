@@ -1,19 +1,14 @@
 package com.abrosimov.recyclerViewTest;
 
 public class Game {
-    private final String name;
-    private final int idIcon;
+    final private String name;
 
-    public Game(String name, int idIcon) {
+    public Game(String name) {
         this.name = name;
-        this.idIcon = idIcon;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getIdIcon() {
-        return idIcon;
-    }
 }

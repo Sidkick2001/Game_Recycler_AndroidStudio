@@ -1,3 +1,4 @@
+/*
 package com.abrosimov.recyclerViewTest;
 
 import java.util.ArrayList;
@@ -6,7 +7,8 @@ import java.util.List;
 public class GameRepository {
     public List<Game> getGames() {
         List<Game> games = new ArrayList<>();
-        games.add(new Game("Minecraft", R.drawable.minecraft_icon));
+*/
+/*        games.add(new Game("Minecraft", R.drawable.minecraft_icon));
         games.add(new Game("Valorant", R.drawable.valorant_icon));
         games.add(new Game("Fortnite", R.drawable.fortnite_icon));
         games.add(new Game("Genshin Impact", R.drawable.genshin_icon));
@@ -35,8 +37,10 @@ public class GameRepository {
         games.add(new Game("Dead by Daylight", R.drawable.dbd_icon));
         games.add(new Game("Rainbow Six Siege", R.drawable.r6_icon));
         games.add(new Game("Rocket League", R.drawable.rocketleague_icon));
-        games.add(new Game("The Sims 4", R.drawable.sims4_icon));
+        games.add(new Game("The Sims 4", R.drawable.sims4_icon));*//*
+
 
         return games;
     }
 }
+*/
