@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -17,18 +18,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Game> games = new ArrayList<>();
-        games.add(new Game("ssssss"));
+        List<Game> steamGames = new ArrayList<>();
 
         TextView textView = findViewById(R.id.textView);
+
         GetURLData getURLData = new GetURLData(textView);
-        List<Game> gamees = getURLData.execute("https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0150E8C6A4D3994DBB9434338B829360&steamid=76561198844497951&format=json&include_appinfo=1");
+
+
+        getURLData.execute(
+                "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0150E8C6A4D3994DBB9434338B829360&steamid=76561198844497951&format=json&include_appinfo=1",
+                new GetURLData.OnDataLoadedListener() {
+                    @Override
+                    public void onDataLoaded(List<Game> games) {
+                        // Здесь список уже готов 🎉
+                        Log.d("Steam", "Загружено игр: " + games.size());
+                        for (Game g : games) {
+                            Log.d("Steam", g.getName());
+                            steamGames.add(g);
+                        }
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Log.e("Steam", "Ошибка: " + message);
+                    }
+                }
+        );
+
+        Log.d("Steam", "Объем steamGames:" + steamGames.size());
 
 
         RecyclerView recyclerView = findViewById(R.id.myRecyclerGames);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        GameAdapter gameAdapter = new GameAdapter(gamees);
+        GameAdapter gameAdapter = new GameAdapter(steamGames);
         recyclerView.setAdapter(gameAdapter);
     }
 }
