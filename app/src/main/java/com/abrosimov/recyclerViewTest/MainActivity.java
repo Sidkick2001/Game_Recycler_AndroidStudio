@@ -8,9 +8,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,17 +35,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(String answer) {
                         runOnUiThread(() -> {
                             mainProgressBar.setVisibility(View.GONE);
-                            try {
-                                JSONObject json = new JSONObject(answer);
-                                JSONObject response = json.getJSONObject("response");
-                                JSONArray games = response.getJSONArray("games");
-                                String game = games.getString(0);
 
-                                Log.d("gameJson", game);
+                            ParsingJsonSteam parsingJsonSteam = new ParsingJsonSteam();
+
+                            List<SteamAccountGame> steamAccountGames = new ArrayList<>();
+                            try {
+                                List<String> games = parsingJsonSteam.getListGames(answer);
+                                for (int i = 0; i < games.size(); i++) {
+                                    steamAccountGames.add(new SteamAccountGame(games.get(i)));
+                                }
 
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
+
+
                         });
                     }
 
@@ -53,16 +58,6 @@ public class MainActivity extends AppCompatActivity {
                         textView.setText("Ошибка: " + e.getMessage());
                     }
                 });
-
-
-
-
-         //Когда получу ответ
-
-        /*Log.d("ResponseServer", requestSteamAPI.getAnswer());*/
-
-
-
 
 
 
