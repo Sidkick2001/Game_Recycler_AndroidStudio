@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 }
 
-
                                 GameAdapter gameAdapter = new GameAdapter(steamAccountGames);
                                 recyclerView.setAdapter(gameAdapter);
 

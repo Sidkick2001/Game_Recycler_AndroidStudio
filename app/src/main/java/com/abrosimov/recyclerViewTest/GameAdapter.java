@@ -43,9 +43,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textItem.setText(games.get(position).getName());
-        Picasso.get()
-                .load(games.get(position).getFullIconUrl())
-                .into(holder.gameIcon);
+        Picasso.get().load(games.get(position).getFullIconUrl()).into(holder.gameIcon);
 
 
 
