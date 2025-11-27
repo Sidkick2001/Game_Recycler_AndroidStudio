@@ -1,4 +1,3 @@
-/*
 package com.abrosimov.recyclerViewTest;
 
 import android.view.LayoutInflater;
@@ -11,22 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> {
-    private final List<Game> games;
-    GameAdapter(List<Game> games) {
+    private final List<SteamAccountGame> games;
+
+    GameAdapter(List<SteamAccountGame> games) {
         this.games = games;
     }
 
-     static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textItem;
-        */
-/*ImageView gameIcon;*//*
- //опа
+
+        /*ImageView gameIcon;*/
+        //опа
         MyViewHolder(View itemView) {
             super(itemView);
             textItem = itemView.findViewById(R.id.gameText);
-            */
-/*gameIcon = itemView.findViewById(R.id.gameIcon);*//*
- //оп
+
+            /*gameIcon = itemView.findViewById(R.id.gameIcon);*/
+
         }
     }
 
@@ -42,16 +42,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textItem.setText(games.get(position).getName());
-        */
-/*holder.gameIcon.setImageResource(games.get(position).getIdIcon());*//*
+        /*holder.gameIcon.setImageResource(games.get(position).getIdIcon());*/
 
 
-        */
-/*//*
-/ Обработка клика
+
+        /*Обработка клика*//*
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), games.get(position), Toast.LENGTH_SHORT).show();
-        });*//*
+        });*/
 
     }
 
@@ -59,4 +57,4 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     public int getItemCount() {
         return games.size();
     }
-}*/
+}

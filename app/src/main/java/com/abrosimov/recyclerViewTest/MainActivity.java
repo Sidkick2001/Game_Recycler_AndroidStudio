@@ -7,6 +7,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 
@@ -23,8 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
         ProgressBar mainProgressBar = findViewById(R.id.MainProgressBar);
         TextView textView = findViewById(R.id.textView);
+        RecyclerView recyclerView = findViewById(R.id.myRecyclerGames);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         RequestSteamAPI api = new RequestSteamAPI();
+        ParsingJsonSteam parsingJsonSteam = new ParsingJsonSteam();
+
+        List<SteamAccountGame> steamAccountGames = new ArrayList<>();
 
         mainProgressBar.setVisibility(View.VISIBLE);
 
@@ -35,21 +43,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(String answer) {
                         runOnUiThread(() -> {
                             mainProgressBar.setVisibility(View.GONE);
-
-                            ParsingJsonSteam parsingJsonSteam = new ParsingJsonSteam();
-
-                            List<SteamAccountGame> steamAccountGames = new ArrayList<>();
                             try {
                                 List<String> games = parsingJsonSteam.getListGames(answer);
+
                                 for (int i = 0; i < games.size(); i++) {
                                     steamAccountGames.add(new SteamAccountGame(games.get(i)));
                                 }
 
+                                Log.d("SizeSteamGames", String.valueOf(steamAccountGames.size()));
+
+                                GameAdapter gameAdapter = new GameAdapter(steamAccountGames);
+                                recyclerView.setAdapter(gameAdapter);
+
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
-
-
                         });
                     }
 
@@ -64,11 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /*    //Настройка recyclerView
-        RecyclerView recyclerView = findViewById(R.id.myRecyclerGames);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GameAdapter gameAdapter = new GameAdapter(steamGames);
-        recyclerView.setAdapter(gameAdapter);
-    }*/
+        //Настройка recyclerView
+
+
+
     }
 }
