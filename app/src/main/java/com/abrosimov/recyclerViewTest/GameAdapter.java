@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> {
@@ -18,14 +21,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textItem;
+        ImageView gameIcon;
 
-        /*ImageView gameIcon;*/
-        //опа
         MyViewHolder(View itemView) {
             super(itemView);
             textItem = itemView.findViewById(R.id.gameText);
-
-            /*gameIcon = itemView.findViewById(R.id.gameIcon);*/
+            gameIcon = itemView.findViewById(R.id.gameIcon);
 
         }
     }
@@ -42,7 +43,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textItem.setText(games.get(position).getName());
-        /*holder.gameIcon.setImageResource(games.get(position).getIdIcon());*/
+        Picasso.get()
+                .load(games.get(position).getFullIconUrl())
+                .into(holder.gameIcon);
 
 
 

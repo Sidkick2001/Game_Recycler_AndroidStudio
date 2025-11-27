@@ -57,4 +57,5 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("org.json:json:20250517")
+    implementation("com.squareup.picasso:picasso:2.8")
 }

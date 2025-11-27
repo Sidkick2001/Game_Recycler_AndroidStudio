@@ -44,13 +44,20 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(() -> {
                             mainProgressBar.setVisibility(View.GONE);
                             try {
-                                List<String> games = parsingJsonSteam.getListGames(answer);
+                                List<String> nameGames = parsingJsonSteam.getNameGames(answer);
+                                List<Integer> appsId = parsingJsonSteam.getAppsId(answer);
+                                List<String> iconsUrl = parsingJsonSteam.getIconsUrl(answer);
 
-                                for (int i = 0; i < games.size(); i++) {
-                                    steamAccountGames.add(new SteamAccountGame(games.get(i)));
+
+                                // Заполняем класс SteamAccountGame
+                                for (int i = 0; i < nameGames.size(); i++) {
+                                    steamAccountGames.add(new SteamAccountGame(
+                                            appsId.get(i),
+                                            nameGames.get(i),
+                                            iconsUrl.get(i)));
+
                                 }
 
-                                Log.d("SizeSteamGames", String.valueOf(steamAccountGames.size()));
 
                                 GameAdapter gameAdapter = new GameAdapter(steamAccountGames);
                                 recyclerView.setAdapter(gameAdapter);
@@ -63,18 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Exception e) {
+                        textView.setVisibility(View.VISIBLE);
                         textView.setText("Ошибка: " + e.getMessage());
                     }
                 });
-
-
-
-
-
-
-        //Настройка recyclerView
-
-
 
     }
 }
